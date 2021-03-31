@@ -1,0 +1,100 @@
+<div class="modal fade" id="createModal" aria-labelledby="createModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h4 class="modal-title" id="createModalLabel">Creating a new user</h4>
+          <button 
+            type="button" 
+            class="close" 
+            data-dismiss="modal" 
+            aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form 
+          id="creatingForm"
+          [formGroup]="creatingForm" 
+          (ngSubmit)="addUser()"
+        >
+          <div class="form-group">
+              <label >First name</label>
+              <input 
+                class="form-control" 
+                formControlName="first_name" type="text" required
+              >
+              <div class="validation" 
+                *ngIf="creatingForm.get('first_name').invalid && creatingForm.get('first_name').touched"
+              >
+                <small>       
+                  Enter first name
+                </small>
+              </div>
+          </div>
+          <div class="form-group">
+              <label >Last name</label>
+              <input 
+                class="form-control" 
+                formControlName="last_name"  type="text" required
+              >
+              <div class="validation"      
+                *ngIf="creatingForm.get('last_name').invalid && creatingForm.get('last_name').touched"          
+              >
+                <small>
+                  Enter last name
+                </small>
+              </div>
+          </div>
+          <div class="form-group">
+              <label>Email address</label>
+              <input 
+                class="form-control" 
+                formControlName="email" type="email" required
+              >
+              <div class="validation"
+                *ngIf="creatingForm.get('email').invalid && creatingForm.get('email').touched"        
+              >
+                <small *ngIf="creatingForm.get('email').errors.required">
+                  Enter email address
+                </small>
+                <small *ngIf="creatingForm.get('email').errors.email">
+                  Enter <b>correct</b> email address
+                </small>
+              </div>
+          </div>
+          <div class="form-group">
+            <label >Avatar</label>
+            <input 
+              class="form-control" 
+              formControlName="avatar"
+              type="text" 
+            >
+            <div class="validation"      
+              *ngIf="creatingForm.get('avatar').invalid && creatingForm.get('avatar').touched"          
+            >
+              <small>
+                Insert the link to the avatar
+              </small>
+            </div>
+           </div>
+          <div class="modal-footer">
+            <button 
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button 
+              type="submit"
+              class="btn btn-success"
+              [disabled]="creatingForm.invalid"
+            >
+              Create a new user
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
